@@ -69,6 +69,15 @@ const categories = [
   { name: '悬疑推理', emoji: '🕵️', href: '/download' },
 ];
 
+const covers = [
+  { src: '/covers/cover1.jpeg', title: '热血少年' },
+  { src: '/covers/cover2.jpeg', title: '校园恋爱' },
+  { src: '/covers/cover3.jpeg', title: '奇幻魔法' },
+  { src: '/covers/cover4.jpeg', title: '都市言情' },
+  { src: '/covers/cover5.jpeg', title: '治愈日常' },
+  { src: '/covers/cover6.jpeg', title: '悬疑推理' },
+];
+
 export default function Home() {
   return (
     <>
@@ -148,22 +157,45 @@ export default function Home() {
 
                   {/* 漫画封面网格 */}
                   <div className="grid grid-cols-3 gap-2">
-                    {[0, 1, 2, 3, 4, 5].map((i) => (
-                      <div
-                        key={i}
-                        className="aspect-[3/4] overflow-hidden rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 ring-1 ring-amber-100"
+                    {covers.map((c) => (
+                      <figure
+                        key={c.src}
+                        className="group relative aspect-[3/4] overflow-hidden rounded-lg ring-1 ring-amber-100"
                       >
-                        {i === 0 ? (
-                          <Image
-                            src="/logo.png"
-                            alt={`${SITE.name} 漫画封面`}
-                            width={80}
-                            height={100}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : null}
-                      </div>
+                        <Image
+                          src={c.src}
+                          alt={`${SITE.name} ${c.title}漫画封面`}
+                          width={120}
+                          height={160}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-1 pb-1 pt-3 text-[9px] font-semibold text-white">
+                          {c.title}
+                        </figcaption>
+                      </figure>
                     ))}
+                  </div>
+
+                  {/* 底部推荐条 */}
+                  <div className="flex items-center gap-2 rounded-xl bg-orange-50 p-2">
+                    <Image
+                      src="/logo.png"
+                      alt={`${SITE.name} 今日推荐`}
+                      width={30}
+                      height={30}
+                      className="h-8 w-8 shrink-0 rounded-md object-cover"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[10px] font-bold text-slate-800">
+                        今日热门 · 编辑精选
+                      </p>
+                      <p className="truncate text-[9px] text-slate-400">
+                        万人正在追更，立即加入
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-orange-500 px-2 py-0.5 text-[9px] font-bold text-white">
+                      追更
+                    </span>
                   </div>
                 </div>
 
