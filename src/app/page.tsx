@@ -100,15 +100,78 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center">
-            <div className="relative rounded-3xl bg-white p-3 shadow-2xl shadow-amber-200/60 ring-1 ring-amber-100">
-              <Image
-                src="/logo.png"
-                alt={`${SITE.name} App 图标`}
-                width={260}
-                height={260}
-                className="h-56 w-56 rounded-2xl object-cover md:h-64 md:w-64"
-                priority
-              />
+            {/* 手机框展示区 */}
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-amber-300/40 to-orange-300/40 blur-2xl" />
+
+              <div className="relative w-64 rounded-[2.6rem] border-[10px] border-slate-900 bg-slate-900 p-0 shadow-2xl shadow-amber-200/60 md:w-72">
+                {/* 顶部听筒 / 刘海 */}
+                <div className="absolute left-1/2 top-2 z-10 flex h-4 w-24 -translate-x-1/2 items-center justify-center rounded-full bg-slate-900">
+                  <span className="h-2 w-16 rounded-full bg-slate-700" />
+                </div>
+
+                {/* 手机屏幕 */}
+
+                <div className="relative flex flex-col gap-4 overflow-hidden rounded-[2.1rem] bg-white p-4 pt-8">
+                  {/* 屏幕顶栏 */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <Image
+                        src="/logo.png"
+                        alt={`${SITE.name} 图标`}
+                        width={26}
+                        height={26}
+                        className="h-6 w-6 rounded-lg object-cover"
+                      />
+                      <span className="text-xs font-bold text-slate-800">
+                        {SITE.name}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-slate-400">搜索 🔍</span>
+                  </div>
+
+                  {/* 分类标签 */}
+                  <div className="flex gap-1.5">
+                    {['推荐', '日漫', '韩漫', '恋爱'].map((t, i) => (
+                      <span
+                        key={t}
+                        className={
+                          i === 0
+                            ? 'rounded-full bg-orange-500 px-2.5 py-0.5 text-[10px] font-semibold text-white'
+                            : 'rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] text-slate-500'
+                        }
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* 漫画封面网格 */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                      <div
+                        key={i}
+                        className="aspect-[3/4] overflow-hidden rounded-lg bg-gradient-to-br from-amber-100 to-orange-100 ring-1 ring-amber-100"
+                      >
+                        {i === 0 ? (
+                          <Image
+                            src="/logo.png"
+                            alt={`${SITE.name} 漫画封面`}
+                            width={80}
+                            height={100}
+                            className="h-full w-full object-cover"
+                          />
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 底部 home 条 */}
+                <div className="relative z-10 flex justify-center rounded-b-[2.1rem] bg-slate-900 pb-2 pt-1">
+                  <span className="h-1 w-16 rounded-full bg-slate-500" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
