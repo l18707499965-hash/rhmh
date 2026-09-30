@@ -1,5 +1,8 @@
 # 项目上下文
 
+> **产品**：日韩漫画 - 漫画类 App 多页面官网着陆页（SEO 优化）
+> 品牌词：日韩漫画 | 下载地址见 `src/lib/site.ts` | 百度统计 ID 见 `src/lib/site.ts`
+
 ### 版本技术栈
 
 - **Framework**: Next.js 16 (App Router)
@@ -11,7 +14,7 @@
 ## 目录结构
 
 ```
-├── public/                 # 静态资源
+├── public/                 # 静态资源（logo.png）
 ├── scripts/                # 构建与启动脚本
 │   ├── build.sh            # 构建脚本
 │   ├── dev.sh              # 开发环境启动脚本
@@ -19,17 +22,33 @@
 │   └── start.sh            # 生产环境启动脚本
 ├── src/
 │   ├── app/                # 页面路由与布局
-│   ├── components/ui/      # Shadcn UI 组件库
-│   ├── hooks/              # 自定义 Hooks
-│   ├── lib/                # 工具库
+│   │   ├── layout.tsx      # 根布局（全局 SEO metadata、JSON-LD、百度统计）
+│   │   ├── page.tsx        # 首页
+│   │   ├── robots.ts       # robots.txt（含 sitemap 指向）
+│   │   ├── sitemap.ts      # sitemap.xml
+│   │   ├── download/       # App 下载页
+│   │   ├── comics/         # 漫画分类页
+│   │   ├── features/       # 特色功能页
+│   │   ├── about/          # 关于我们
+│   │   └── faq/            # 常见问题
+│   ├── components/         # Header/Footer/DownloadButton/JsonLd/BaiduAnalytics + ui/
+│   ├── lib/
+│   │   ├── site.ts         # 全局站点配置（品牌/下载链接/统计ID/域名）
 │   │   └── utils.ts        # 通用工具函数 (cn)
 │   └── server.ts           # 自定义服务端入口
+├── DESIGN.md               # 设计规范（品牌视觉/SEO 规范）
 ├── next.config.ts          # Next.js 配置
 ├── package.json            # 项目依赖管理
 └── tsconfig.json           # TypeScript 配置
 ```
 
 - 项目文件（如 app 目录、pages 目录、components 等）默认初始化到 `src/` 目录下。
+
+## SEO 注意点
+
+- 所有页面 title 以品牌词「日韩漫画」前置。
+- 站点域名/下载链接/统计 ID 一律从 `src/lib/site.ts` 读取，禁止硬编码。
+- 新增页面务必补全 metadata（title/description/alternates.canonical）与 sitemap.ts 条目。
 
 ## 包管理规范
 
